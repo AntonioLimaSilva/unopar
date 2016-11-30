@@ -1,0 +1,92 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/LayoutPadrao.xhtml">
+
+	<ui:define name="content">
+
+		<h1 class="aw-page-title">Cadastro de empresas terceirizadas</h1>
+
+		<h:form id="frm">
+			<p:toolbar>
+				<f:facet name="left">
+					<p:defaultCommand target="botaoSalvar"/>
+				
+					<p:button title="Novo" value="Novo" />
+
+					<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+
+					<p:commandButton id="botaoSalvar" title="Salvar" value="Salvar" />
+				</f:facet>
+
+				<f:facet name="right">						
+					<p:button value="Pesquisa" title="Pesquisar" />
+				</f:facet>
+			</p:toolbar>
+
+			<div class="ui-fluid">
+				<h:panelGroup id="visitante-panel" layout="block" styleClass="ui-fluid">
+					<p:panelGrid columns="4" layout="grid"
+						styleClass="panelgrid-noborder" style="margin-top: 20px"
+						columnClasses="ui-grid-col-2, ui-grid-col-5, ui-grid-col-2, ui-grid-col-5">
+						
+						<p:outputLabel value="Nome" for="nome" />
+						<p:inputText id="nome" 
+							size="200" maxlength="150" />
+						
+						<p:outputLabel value="CNPJ" for="cnpj" />
+						<p:inputText id="cnpj" />
+						
+						<p:outputLabel value="Endereço" for="endereco" />
+						<p:inputText id="endereco"  />
+						
+						<p:outputLabel value="Telefone" for="telefone" />
+						<p:inputMask mask="(99)99999-9999" id="telefone" />					
+							
+						<p:outputLabel value="Email" for="email" />
+						<p:inputText id="email" size="200" maxlength="150"/>
+						
+						<p:outputLabel />		
+						<p:outputLabel />			
+					</p:panelGrid>
+				</h:panelGroup>
+			</div>
+	
+			<p:dataTable id="agendas-table" value="#{cadastroEmpresaBean.clientes}"
+			    var="cliente" emptyMessage="Nenhuma cliente cadastrada."
+				rows="10" paginator="true" paginatorPosition="bottom"
+				style="margin-top: 20px;" reflow="true">
+				
+				<p:column headerText="Nome" style="text-align: left" >
+					<h:outputText value="Lanches e cia" />
+				</p:column>
+				<p:column headerText="CNPJ" style="text-align: left">
+					<h:outputText value="11.552.533/0001-00" />
+				</p:column>
+				<p:column headerText="Endereço" style="text-align: left">
+					<h:outputText value="Rua fulano de tal, 000" />
+				</p:column>
+				<p:column headerText="Telefone" style="text-align: left">
+					<h:outputText value="(88)99985-4011" />
+				</p:column>
+				
+				<p:column headerText="Email" style="text-align: left">
+					<h:outputText value="lanchesecia@gmail.com" />
+				</p:column>
+							
+				<p:column headerText="Ações" style="text-align: left" width="8%">
+					<p:button style="width: 20px; height: 18px" 
+						title="Editar" icon="ui-icon-pencil">
+					</p:button>
+					<p:commandButton style="width: 20px; height: 18px" title="Excluir"
+						icon="ui-icon-trash">
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
